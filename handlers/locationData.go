@@ -12,6 +12,8 @@ import (
 
 func LocationDataHandler(w http.ResponseWriter, r *http.Request) {
 
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	// Check for correct Content Type
 	if r.Header.Get("Content-Type") != "" {
 		value, _ := header.ParseValueAndParams(r.Header, "Content-Type")
