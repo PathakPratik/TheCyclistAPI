@@ -42,7 +42,9 @@ func LocationDataHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Response for Success Case
 	if res {
+		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Success"))
+		return
 	}
 
 }
