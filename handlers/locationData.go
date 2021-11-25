@@ -37,7 +37,7 @@ func LocationDataHandler(w http.ResponseWriter, r *http.Request) {
 		http.MethodOptions: true,
 	}
 
-	if allowedMethods[r.Method] {
+	if !allowedMethods[r.Method] {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
