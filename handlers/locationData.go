@@ -26,6 +26,11 @@ func LocationDataHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	if r.Method == "OPTIONS" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
 	// API methods allowed
 	allowedMethods := map[string]bool{
 		http.MethodPost:    true,
