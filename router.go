@@ -10,5 +10,6 @@ func router() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handlers.IndexHandler)
 	mux.HandleFunc("/api/data/location", handlers.LocationDataHandler)
+	mux.HandleFunc("/api/trips", handlers.TripsHandler)
 	return mux
 }

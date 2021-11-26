@@ -11,8 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
-const TableName = "UserTrips"
-
 var dynamoClient *dynamodb.DynamoDB
 
 func InitDynamoDb() {
@@ -40,6 +38,9 @@ type TrackingData struct {
 	Timestamp json.Number `valid:"required"`
 }
 
+const TableName = "UserTrips"
+const IndexName = "UserId"
+
 func AddItem(item TrackingData) bool {
 	av, _ := dynamodbattribute.MarshalMap(item)
 
@@ -55,6 +56,36 @@ func AddItem(item TrackingData) bool {
 	}
 
 	return true
+}
+
+func GetItem(Uid string) (bool, []TrackingData) {
+
+	var queryInput = &dynamodb.QueryInput{
+		TableName: aws.String(TableName),
+		IndexName: aws.String("UserId-index"),
+		KeyConditions: map[string]*dynamodb.Condition{
+			IndexName: {
+				ComparisonOperator: aws.String("EQ"),
+				AttributeValueList: []*dynamodb.AttributeValue{
+					{
+						S: aws.String(Uid),
+					},
+				},
+			},
+		},
+	}
+
+	var res, err = dynamoClient.Query(queryInput)
+
+	trackingData := []TrackingData{}
+
+	if err != nil {
+		fmt.Println("Got error calling Query: ", err.Error())
+		return false, trackingData
+	} else {
+		dynamodbattribute.UnmarshalListOfMaps(res.Items, &trackingData)
+		return true, trackingData
+	}
 }
 
 type Events struct {
