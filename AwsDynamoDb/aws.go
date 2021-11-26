@@ -112,3 +112,20 @@ func AddEvent(item Events) bool {
 
 	return true
 }
+
+func GetEvents() (bool, []Events) {
+
+	var queryInput = &dynamodb.ScanInput{TableName: aws.String("Events")}
+
+	var res, err = dynamoClient.Scan(queryInput)
+
+	events := []Events{}
+
+	if err != nil {
+		fmt.Println("Got error calling Query: ", err.Error())
+		return false, events
+	} else {
+		dynamodbattribute.UnmarshalListOfMaps(res.Items, &events)
+		return true, events
+	}
+}

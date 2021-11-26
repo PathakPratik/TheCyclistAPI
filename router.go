@@ -11,5 +11,6 @@ func router() *http.ServeMux {
 	mux.HandleFunc("/", handlers.IndexHandler)
 	mux.HandleFunc("/api/data/location", handlers.LocationDataHandler)
 	mux.HandleFunc("/api/trips", handlers.TripsHandler)
+	mux.HandleFunc("/api/events", handlers.EventsHandler)
 	return mux
 }

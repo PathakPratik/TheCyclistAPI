@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 
 	// "github.com/TheCyclistGoServer/API"
 	"github.com/TheCyclistGoServer/AwsDynamoDb"
@@ -22,7 +21,7 @@ func main() {
 
 	// Start Server
 	fmt.Printf("Starting server at port 8080\n")
-	port := os.Getenv("PORT")
-	log.Fatal(http.ListenAndServe(":"+port, mux))
-	// log.Fatal(http.ListenAndServe(":8080", mux))
+	// port := os.Getenv("PORT")
+	// log.Fatal(http.ListenAndServe(":"+port, mux))
+	log.Fatal(http.ListenAndServe(":8080", mux))
 }
