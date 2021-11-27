@@ -10,7 +10,7 @@ import (
 
 func decorator(trips []AwsDynamoDb.TrackingData) [][]AwsDynamoDb.TrackingData {
 	sort.Slice(trips, func(i, j int) bool {
-		return trips[i].TripId > trips[j].TripId
+		return trips[i].Timestamp > trips[j].Timestamp
 	})
 
 	var tripPoints [][]AwsDynamoDb.TrackingData
