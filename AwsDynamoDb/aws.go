@@ -36,9 +36,11 @@ type TrackingData struct {
 	Latitude  json.Number `valid:"required"`
 	Longitude json.Number `valid:"required"`
 	Timestamp json.Number `valid:"required"`
+	Speed     json.Number `valid:"required"`
+	Temp      json.Number `valid:"required"`
 }
 
-const TableName = "UserTrips"
+const TableName = "UserJourneys"
 const IndexName = "UserId"
 
 func AddItem(item TrackingData) bool {
