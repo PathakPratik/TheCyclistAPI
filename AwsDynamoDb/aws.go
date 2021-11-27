@@ -64,7 +64,6 @@ func GetItem(Uid string) (bool, []TrackingData) {
 
 	var queryInput = &dynamodb.QueryInput{
 		TableName: aws.String(TableName),
-		IndexName: aws.String("UserId-index"),
 		KeyConditions: map[string]*dynamodb.Condition{
 			IndexName: {
 				ComparisonOperator: aws.String("EQ"),
