@@ -24,7 +24,7 @@ func decorator(trips []AwsDynamoDb.TrackingData) [][]AwsDynamoDb.TrackingData {
 		}
 
 		res = append(res, AwsDynamoDb.TrackingData{
-			TripId: trip.TripId, UserId: trip.UserId, RecordId: trip.RecordId, Latitude: trip.Latitude, Longitude: trip.Longitude, Timestamp: trip.Timestamp,
+			TripId: trip.TripId, UserId: trip.UserId, Timer: trip.Timer, RecordId: trip.RecordId, Latitude: trip.Latitude, Longitude: trip.Longitude, Timestamp: trip.Timestamp,
 		})
 	}
 	tripPoints = append(tripPoints, res)
